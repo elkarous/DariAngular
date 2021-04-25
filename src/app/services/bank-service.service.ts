@@ -5,6 +5,7 @@ import {  throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { BankOffres } from '../model/bankOffres';
+import { Credit } from '../model/credit';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,13 @@ export class BankServiceService {
       catchError(this.errorHandler))
    
   }
-  create(): Observable<Bank> {
+  create(bank:Bank): Observable<Bank> {
     return this.http.post<Bank>(this.apiServer + 'addBank', this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
-  getByName(): Observable<Bank> {
+  getByName( name:string): Observable<Bank> {
     return this.http.post<Bank>(this.apiServer + 'getBankByName', this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
@@ -40,7 +41,7 @@ export class BankServiceService {
 
   
 
-  update( bank:any): Observable<Bank> {
+  update( bank:Bank): Observable<Bank> {
     return this.http.put<Bank>(this.apiServer + 'updateBank' , this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
@@ -54,13 +55,25 @@ export class BankServiceService {
     )
   }
 
-  getBankOffreByName(): Observable<BankOffres[]> {
+  getBankOffreByName(name:string): Observable<BankOffres[]> {
     return this.http.post<BankOffres[]>(this.apiServer + 'getBankOffreByname', this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
+  getBestOffre(credit:Credit): Observable<BankOffres[]> {
+    return this.http.post<BankOffres[]>(this.apiServer + 'getBestOffres', this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
 
+  getBankByIR(interrestRate:number): Observable<Bank[]> {
+    return this.http.post<Bank[]>(this.apiServer + 'getALLBankByIr', this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
 
 
 
