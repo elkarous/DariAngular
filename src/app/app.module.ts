@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { SimulationComponent } from './simulation/simulation.component';
 import { EstimationComponent } from './estimation/estimation.component';
 import { LoginComponent } from './login/login.component';
-
+import { BankComponent } from './bank/bank.component';
+import{HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,14 +20,16 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     SimulationComponent,
     EstimationComponent,
-    LoginComponent
+    LoginComponent,
+    BankComponent
   ],
   entryComponents:[LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
